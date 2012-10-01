@@ -55,6 +55,17 @@ public class MainActivity extends Activity {
             }
 
         });
+
+        Button openRotateActivityButton = (Button) findViewById(R.id.open_rotate_activity_button);
+        openRotateActivityButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RotateActivity.class);
+                startActivity(intent);
+            }
+
+        });
     }
 
     @Override

@@ -27,16 +27,28 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/open_browser_button"
+    <TextView
+        android:id="@+id/data1_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_open_browser" />
+        android:text="@string/message_data1" />
+
+    <TextView
+        android:id="@+id/data2_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/message_data2" />
+
+    <EditText
+        android:id="@+id/data3_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/message_data3" />
 
     <Button
-        android:id="@+id/open_rotate_activity_button"
+        android:id="@+id/set_now_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_open_rotate_activity" />
+        android:text="@string/button_set_now" />
 
 </LinearLayout>

@@ -65,3 +65,55 @@ onSaveInstanceStateに対するonRestoreInstanceStateが実行されなかった
 - onResume
 
 つまり、画面起動時も再表示時も、同じIntentが渡される。
+
+## 端末回転時のイベント
+
+端末を回転させたときに実行されるイベントを確認した。
+
+- onPause
+- onSaveInstanceState
+- onStop
+- onDestroy
+- onCreate
+- onStart
+- onRestoreInstanceState
+- onResume
+
+onDestroyとonCreateが実行されることから、一度Activityが破棄され、再度作成されていることが分かる。また、onSaveInstanceStateとonRestoreInstanceStateが実行されており、このタイミングで保持しておきたい画面データを保存/復元すればよいことが分かる。
+
+### 実際に画面項目値がどうなるか確認
+
+画面に以下のようにビューを配置した。
+
+- data1 (TextView)
+- data2 (TextView)
+- data3 (EditText)
+
+このうち、data1のみ、onSaveInstanceStateとonRestoreInstanceStateで値を保存/復元するように処理を書いた。
+
+端末回転前に、data1、2、3に現在時刻を設定し、それから回転すると、以下のようになった。
+
+- onPause
+    - data1: 2012/10/01 21:44:15
+    - data2: 2012/10/01 21:44:15
+    - data3: 2012/10/01 21:44:15
+- onSaveInstanceState
+    - data1: 2012/10/01 21:44:15
+    - data2: 2012/10/01 21:44:15
+    - data3: 2012/10/01 21:44:15
+- onStop
+- onDestroy
+- onCreate
+- onStart
+- onRestoreInstanceState
+    - data1: 2012/10/01 21:44:15
+    - data2: データ2 (保存されない)
+    - data3: 2012/10/01 21:44:15
+- onResume
+    - data1: 2012/10/01 21:44:15
+    - data2: データ2 (保存されない)
+    - data3: 2012/10/01 21:44:15
+
+onSaveInstanceStateまではdata1～3に値が保持されているが、onRestoreInstanceStateではdata2が消えてしまっている。これは、data1はonSaveInstanceStateで値を保存しているがdata2は保存していないためである。
+
+data3の値はonSaveInstanceStateで保存していないにもかかわらず値が保持されているが、これはEditTextが内部でonSaveInstanceState、onRestoreInstanceState時に値を保存/復元しているためである。

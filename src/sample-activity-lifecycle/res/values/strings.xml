@@ -27,5 +27,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">Activity Lifecycle (Sample)</string>
     <string name="button_open_browser">Webブラウザを開く(Yahoo)</string>
+    <string name="button_open_rotate_activity">端末回転時の挙動を確認する</string>
+    <string name="button_set_now">現在時刻を設定する</string>
+    <string name="message_data1">データ1 (保存される)</string>
+    <string name="message_data2">データ2 (保存されない)</string>
+    <string name="message_data3">データ3 (保存される)</string>
 
 </resources>
